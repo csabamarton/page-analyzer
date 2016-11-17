@@ -36,5 +36,21 @@ Some features, solutions which - i think - are worth mentioning:
   
 The project has tests on two levels: on controller and service.
 
+# Build process:
+in the root folder there are the script file: build.sh and service.sh
+Running the build.sh makes the maven build. Then we can run the jar file with the service.sh. More simple:
+
+```sh
+$ bash build.sh
+$ bash service.sh start
+```
+
+
+we can stop the service by:
+
+```sh
+$ bash service.sh stop
+```
+
   [Spiegel]: <https://www.spiegel.de/meinspiegel/login.html>
   [Github]: <https://github.com/login>
