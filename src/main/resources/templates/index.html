@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Page Analyzer</title>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <script type="text/javascript"
+            src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.2.0/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <link href="../static/css/spring.css"
+          th:href="@{/css/spring.css}" rel="stylesheet" media="screen"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Page Analyser</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <form class="" action="#" th:action="@{/page}" th:object="${page}"
+                  method="post">
+                <div class="form-group">
+                    <label for="url">Link:</label>
+                    <input type="text" class="form-control" id="url" th:field="*{url}"/>
+                    <div th:if="${#fields.hasErrors('url')}" th:errors="*{url}">Url Error</div>
+                </div>
+                <button type="submit" class="btn btn-default">Analyze</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container" th:if="${page.processed}">
+    <hr/>
+    <h3>Page Analysing Result</h3>
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#html" data-toggle="tab">HTML Version</a>
+        </li>
+        <li><a href="#title" data-toggle="tab">Title</a>
+        </li>
+        <li><a href="#headings" data-toggle="tab">Headings</a>
+        </li>
+        <li><a href="#links" data-toggle="tab">Links</a>
+        </li>
+        <li><a href="#login" data-toggle="tab">Login</a>
+        </li>
+    </ul>
+
+    <div class="tab-content clearfix">
+        <div class="tab-pane active" id="html">
+            <h3>HTML</h3>
+            <div class="col-sm-8">
+                <form class="">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Html version:</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" th:text="${page.htmlVersion}">
+                                Html version</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="tab-pane" id="title">
+            <h3>Title</h3>
+            <div class="col-sm-8">
+                <form class="">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Title:</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" th:text="${page.title}">
+                                Title</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="tab-pane" id="headings">
+            <h3>Headings</h3>
+            <div class="col-sm-8">
+                <form class="">
+                    <div class="form-group" th:each="instance : ${page.numOfHeadings}">
+                        <label class="col-sm-2 control-label"
+                               th:text="${'h' + instance.key}">Heading</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" th:text="${instance.value}">
+                                num</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="tab-pane" id="links">
+            <h3>Links</h3>
+            <div class="col-sm-8">
+                <form class="">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Number of External
+                            Links:</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static"
+                               th:text="${page.numOfExternalLinks}">
+                                -</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Number of Internal
+                            Links:</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static"
+                               th:text="${page.numOfInternalLinks}">
+                                -</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="tab-pane" id="login">
+            <h3>Login</h3>
+            <div class="col-sm-8">
+                <form class="">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Does contain Login
+                            form?</label>
+                        <div class="col-sm-10">
+                            <div th:if="${page.containsLoginForm}"><p>Yes</p></div>
+                            <div th:unless="${page.containsLoginForm}"><p>No</p></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
