@@ -34,7 +34,7 @@ Some features, solutions which - i think - are worth mentioning:
   - In HtmlVersionAnalyzer i used Enum->Pattern key->value map. It made the code cleaner, and maybe it did not break some KISS, YAGNI rules. Using Pattern instead of The Regex makes the application faster.
   - The weak part of the application is the solution for recognizing whether the current page contains login form or does not. Currently it is only search for input fields with password type. If is it contained, then probably we are on a login or sign up page. It's not perferct maybe, it needs to check some keywords which are stored in an i18n message.properties or somewhere.
   
-The project has tests on two level: on controller and service.
+The project has tests on two levels: on controller and service.
 
   [Spiegel]: <https://www.spiegel.de/meinspiegel/login.html>
   [Github]: <https://github.com/login>
