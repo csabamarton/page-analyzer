@@ -11,7 +11,25 @@ For a valid URL that returns HTML and which is reachable (do not forget to consi
   - Number of headings grouped by heading level
   - Number of hypermedia links in the document, grouped into "internal" links to the same domain and "external" links to other domains
   - Does the page contain a login form? You will need to provide some plausible logic for detecting such a form in at least some cases. Consider the multiple ways (and human languages) that might be used to construct login forms. We expect the login forms on [Spiegel] and [Github] to be detectable.
+
+The technology stack has been built on the following elements:
+
+> Spring Boot provides the base and the configuration is java-based.
+> On the client-side Thymeleaf gives the UI.
+> On the backend the request have been catched by Spring MVC
+> For unit and integration tests the project uses jUnit and Mockito.
+
+The Controller (PageController) is quite simple it only catch the requests and pass it down to the service level (PageAnalyzerService).
+
+On the service level, the PageAnalyzerService has only two public method. The the followingprocesses have been encapsulated by composition:
+
+  - HtmlVersionAnalyzer
+  - PageTitleAnalyzer
+  - PageHeadingsAnalyzer
+  - PageLinkAnalyzer
+  - LoginFormRecognizer
   
-  
+The project has tests on two level: on controller and service.
+
   [Spiegel]: <https://www.spiegel.de/meinspiegel/login.html>
   [Github]: <https://github.com/login>
