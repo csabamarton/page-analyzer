@@ -5,8 +5,6 @@ import com.csmarton.services.analyzer.*;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -19,19 +17,19 @@ import java.net.MalformedURLException;
 public class PageAnalyzerServiceImpl implements PageAnalyzerService {
 
 	@Autowired
-	HtmlVersionAnalyzer htmlVersionAnalyzer;
+	private HtmlVersionAnalyzer htmlVersionAnalyzer;
 
 	@Autowired
-	PageTitleAnalyzer pageTitleAnalyzer;
+	private PageTitleAnalyzer pageTitleAnalyzer;
 
 	@Autowired
-	PageHeadingsAnalyzer pageHeadingsAnalyzer;
+	private PageHeadingsAnalyzer pageHeadingsAnalyzer;
 
 	@Autowired
-	PageLinkAnalyzer pageLinkAnalyzer;
+	private PageLinkAnalyzer pageLinkAnalyzer;
 
 	@Autowired
-	LoginFormRecognizer loginFormRecognizer;
+	private LoginFormRecognizer loginFormRecognizer;
 
 	@Override
 	public void processLink(Page page, BindingResult errors)

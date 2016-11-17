@@ -16,8 +16,9 @@ import static com.google.common.truth.Truth.assert_;
 import static org.mockito.Mockito.spy;
 
 public class PageAnalyzerServiceImplTest {
-	private final static String SPIEGEL_LOGIN_PAGE_URL = "https://www.spiegel.de/meinspiegel/login" 
+	private final static String SPIEGEL_LOGIN_PAGE_URL = "https://www.spiegel.de/meinspiegel/login"
 			+ ".html";
+	private final static String GITHUB_LOGIN_PAGE_URL = "https://github.com/login";
 
 	PageAnalyzerServiceImpl pageAnalyzerService;
 	Page page;
@@ -40,6 +41,7 @@ public class PageAnalyzerServiceImplTest {
 		pageAnalyzerService = spy(PageAnalyzerServiceImpl.class);
 
 		htmlVersionAnalyzer = spy(HtmlVersionAnalyzer.class);
+		pageTitleAnalyzer = spy(PageTitleAnalyzer.class);
 		pageHeadingsAnalyzer = spy(PageHeadingsAnalyzer.class);
 		pageLinkAnalyzer = spy(PageLinkAnalyzer.class);
 		loginFormRecognizer = spy(LoginFormRecognizer.class);
@@ -119,11 +121,21 @@ public class PageAnalyzerServiceImplTest {
 
 	@Test
 	public void spiegelLoginPage_ShouldBeRecognised() throws IOException
-	{ // my funniest method name ever :)
+	{
 		page.setUrl(SPIEGEL_LOGIN_PAGE_URL);
 		page.setDocument(Jsoup.connect(page.getUrl()).get());
 
 		boolean b = loginFormRecognizer.containsLoginForm(page.getDocument());
 		assertWithMessage("Spiegel Login page was not recognised").that(b).isTrue();
+	}
+
+	@Test
+	public void githubLoginPage_ShouldBeRecognised() throws IOException
+	{
+		page.setUrl(GITHUB_LOGIN_PAGE_URL);
+		page.setDocument(Jsoup.connect(page.getUrl()).get());
+
+		boolean b = loginFormRecognizer.containsLoginForm(page.getDocument());
+		assertWithMessage("Github Login page was not recognised").that(b).isTrue();
 	}
 }

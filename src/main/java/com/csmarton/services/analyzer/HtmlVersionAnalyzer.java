@@ -51,7 +51,6 @@ public class HtmlVersionAnalyzer {
 			if (node instanceof DocumentType) {
 				DocumentType documentType = (DocumentType)node;
 				docTypeLine = documentType.toString();
-				System.out.println(documentType.toString());
 
 				break;
 			}
