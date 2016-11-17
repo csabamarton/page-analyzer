@@ -37,7 +37,8 @@ Some features, solutions which - i think - are worth mentioning:
 The project has tests on two levels: on controller and service.
 
 # Build process:
-in the root folder there are the script file: build.sh and service.sh
+
+In the root folder there are two script files: build.sh and service.sh.
 Running the build.sh makes the maven build. Then we can run the jar file with the service.sh. More simple:
 
 ```sh
