@@ -14,14 +14,14 @@ For a valid URL that returns HTML and which is reachable (do not forget to consi
 
 The technology stack has been built on the following elements:
 
-> Spring Boot provides the base and the configuration is java-based.
-> On the client-side Thymeleaf gives the UI.
-> On the backend the request have been catched by Spring MVC
-> For unit and integration tests the project uses jUnit and Mockito.
+- Spring Boot provides the base and the configuration is java-based.
+- On the client-side Thymeleaf gives the UI.
+- On the backend the requests have been catched by Spring MVC
+- For unit and integration tests the project uses jUnit and Mockito.
 
-The Controller (PageController) is quite simple it only catch the requests and pass it down to the service level (PageAnalyzerService).
+The Controller (PageController) is quite simple it only catches the requests and passes them down to the service level (PageAnalyzerService).
 
-On the service level, the PageAnalyzerService has only two public method. The the following processes have been encapsulated by composition:
+On the service level, the PageAnalyzerService has only two public methods. The the following processes have been encapsulated by composition:
 
   - HtmlVersionAnalyzer
   - PageTitleAnalyzer
