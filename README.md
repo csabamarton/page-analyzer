@@ -21,13 +21,18 @@ The technology stack has been built on the following elements:
 
 The Controller (PageController) is quite simple it only catch the requests and pass it down to the service level (PageAnalyzerService).
 
-On the service level, the PageAnalyzerService has only two public method. The the followingprocesses have been encapsulated by composition:
+On the service level, the PageAnalyzerService has only two public method. The the following processes have been encapsulated by composition:
 
   - HtmlVersionAnalyzer
   - PageTitleAnalyzer
   - PageHeadingsAnalyzer
   - PageLinkAnalyzer
   - LoginFormRecognizer
+  
+Some features, solutions which - i think - are worth mentioning:
+
+  - In HtmlVersionAnalyzer i used Enum->Pattern key->value map. It made the code cleaner, and maybe it did not break some KISS, YAGNI rules. Using Pattern instead of The Regex makes the application faster.
+  - The weak part of the application is the solution for recognizing whether the current page contains login form or does not. Currently it is only search for input fields with password type. If is it contained, then probably we are on a login or sign up page. It's not perferct maybe, it needs to check some keywords which are stored in an i18n message.properties or somewhere.
   
 The project has tests on two level: on controller and service.
 
